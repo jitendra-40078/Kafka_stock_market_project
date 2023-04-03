@@ -1,0 +1,120 @@
+step 1 :
+
+lanching the ec2 Instance t2.xlarge linux os
+
+step 2:
+
+installing the java jdk on ec2 machine:
+--------------------------------------- 
+
+sudo yum install java-1.8.0
+
+step 3:
+
+installing the kafka on machine:
+----------------------------------------
+
+wget https://archive.apache.org/dist/kafka/3.0.0/kafka_2.13-3.0.0.tgz
+
+unziping the kafka file
+
+tar xzf kafka_2.13-3.0.0.tgz
+
+step 4:
+
+star the zookeeper:
+-----------------------------------------------------------
+cd kafka_2.13-3.0.0/
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+
+step 5: 
+
+open the new cmd and connect to the same ec2 instance:
+------------------------------------------------------------
+
+now here we are going to alocate some storage to kafka 
+
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+
+cd kafka_2.13-3.0.0/
+
+now we are going to start the kafka server
+
+bin/kafka-server-start.sh config/server.properties
+
+step 6:
+
+our kafka and zookeeper server are running on ec2 privite ip, if we want to send the data 
+from our machine or from other machine then we need to change the private it to public ip
+so can we connect from our machine:
+------------------------------------------------------------------------------
+
+for that we run this command:
+
+sudo nano config/server.properties
+
+and we change this line 
+
+ADVERTISED_LISTENERS to public ip of the EC2 instance
+
+after that we run the zookeeper and kafka server again.
+
+
+step 7:
+
+now we going to create a topic:
+------------------------------------------------
+
+Duplicate the session & enter in a new console
+
+cd kafka_2.13-3.0.0/
+
+bin/kafka-topics.sh --create --topic kafka_project --bootstrap-server "here put your ip address":9092 --replication-factor 1 --partitions 1
+
+
+step 8:
+
+start the producer:-
+---------------------------------------------------
+
+bin/kafka-console-producer.sh --topic kafka_project --bootstrap-server 15.207.21.56:9092
+
+
+step 9:
+
+Start the Consumer:
+--------------------------------------------------
+
+Duplicate the session & enter in a new console:
+
+cd kafka_2.13-3.0.0/
+
+bin/kafka-console-consumer.sh --topic kafka_project --bootstrap-server 15.207.21.56:9092
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
