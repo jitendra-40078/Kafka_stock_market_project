@@ -11,6 +11,7 @@ We are going to use different technologies such as Python, Amazon Web Services (
 1. Programing language: Python, SQL
 2. Apache Kafka
 3. Amazon web services:
+
 . EC2
 . S3
 . Crawler
