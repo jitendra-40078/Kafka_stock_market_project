@@ -21,6 +21,9 @@ We are going to use different technologies such as Python, Amazon Web Services (
    Glue
    
    Athena
+   
+   QuickSight
+   
 
 
 
