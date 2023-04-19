@@ -1,6 +1,6 @@
 step 1 :
 
-lanching the ec2 Instance t2.xlarge linux os
+lunch a ec2 Instance t2.xlarge linux os
 
 step 2:
 
